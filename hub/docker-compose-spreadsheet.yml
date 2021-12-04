@@ -19,6 +19,9 @@ services:
             - SERVICE_BUS_QUEUE_SAS=${SERVICE_BUS_QUEUE_SAS}
             - STORAGE_ACCOUNT=${STORAGE_ACCOUNT}
             - DOMAIN=Spreadsheet
+            - APPINSIGHTS_INSTRUMENTATIONKEY=${APPINSIGHTS_INSTRUMENTATIONKEY}
+            - COSMOS_DB_CONNECTION_STRING=${COSMOS_DB_CONNECTION_STRING}
+            - COSMOS_DB_SPREADSHEET=${COSMOS_DB_SPREADSHEET}
         restart: on-failure
         networks:
             - hub-network
