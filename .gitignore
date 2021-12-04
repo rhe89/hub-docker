@@ -1,3 +1,4 @@
 .env
-**/cert/*.pfx
+.DS_Store
+**/cert/*
 **/backups/*/
