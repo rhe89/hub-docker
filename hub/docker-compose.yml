@@ -1,0 +1,7 @@
+version: '3.7'
+
+networks:
+    hub-network:
+        name: hub-network
+    hub-db-network:
+        name: hub-db-network

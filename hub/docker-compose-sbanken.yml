@@ -1,0 +1,80 @@
+version: '3.7'
+
+networks:
+    default: 
+        external:
+            name: hub-network
+            name: hub-db-network
+        
+services:
+    sbanken-service-bus-queue-host:
+        container_name: "sbanken_service_bus_queue_host"
+        image: "rhe89/hub-sbanken-service-bus-queue-host:latest"
+        environment:
+            - ASPNETCORE_ENVIRONMENT=${ASPNETCORE_ENVIRONMENT}
+            - SQL_DB_SBANKEN=${SQL_DB_SBANKEN}
+            - SERVICE_BUS_QUEUE_SAS=${SERVICE_BUS_QUEUE_SAS}
+            - STORAGE_ACCOUNT=${STORAGE_ACCOUNT}
+            - DOMAIN=Sbanken
+            - APPINSIGHTS_INSTRUMENTATIONKEY=${APPINSIGHTS_INSTRUMENTATIONKEY}
+        restart: on-failure
+        networks:
+            - hub-network
+            - hub-db-network
+
+    sbanken-scheduled-host:
+        container_name: "sbanken_scheduled_host"
+        image: "rhe89/hub-sbanken-scheduled-host:latest"
+        environment:
+            - ASPNETCORE_ENVIRONMENT=${ASPNETCORE_ENVIRONMENT}
+            - SQL_DB_SBANKEN=${SQL_DB_SBANKEN}
+            - SERVICE_BUS_QUEUE_SAS=${SERVICE_BUS_QUEUE_SAS}
+            - STORAGE_ACCOUNT=${STORAGE_ACCOUNT}
+            - DOMAIN=Sbanken
+            - APPINSIGHTS_INSTRUMENTATIONKEY=${APPINSIGHTS_INSTRUMENTATIONKEY}
+        restart: on-failure
+        networks:
+            - hub-network
+            - hub-db-network
+
+    sbanken-api:
+        container_name: "sbanken_api"
+        image: "rhe89/hub-sbanken-api:latest"
+        hostname: "sbanken-api"
+        ports:
+            - "${SBANKEN_API_PORT}:80"
+        environment: 
+            - ASPNETCORE_ENVIRONMENT=${ASPNETCORE_ENVIRONMENT}
+            - ASPNETCORE_URLS=;http://+
+            - SQL_DB_SBANKEN=${SQL_DB_SBANKEN}
+            - SERVICE_BUS_QUEUE_SAS=${SERVICE_BUS_QUEUE_SAS}
+            - AI_CONNECTION_STRING=${AI_CONNECTION_STRING}
+            - STORAGE_ACCOUNT=${STORAGE_ACCOUNT}
+            - DOMAIN=Sbanken
+        restart: on-failure
+        networks:
+            - hub-network
+            - hub-db-network
+
+    sbanken-app:
+        container_name: "sbanken_app"
+        image: "rhe89/hub-sbanken-app:latest"
+        hostname: "sbanken-app"
+        ports:
+            - "${SBANKEN_APP_PORT}:443"
+        environment: 
+            - ASPNETCORE_ENVIRONMENT=${ASPNETCORE_ENVIRONMENT}
+            - ASPNETCORE_URLS=https://+
+            - ASPNETCORE_HTTPS_PORT=${SBANKEN_APP_PORT}
+            - ASPNETCORE_Kestrel__Certificates__Default__Password=${ASPNETCORE_Kestrel__Certificates__Default__Password}
+            - ASPNETCORE_Kestrel__Certificates__Default__Path=${ASPNETCORE_Kestrel__Certificates__Default__Path}
+            - SQL_DB_SBANKEN=${SQL_DB_SBANKEN}
+            - AI_CONNECTION_STRING=${AI_CONNECTION_STRING}
+            - STORAGE_ACCOUNT=${STORAGE_ACCOUNT}
+            - DOMAIN=Sbanken
+        restart: on-failure
+        volumes: 
+            - "${WEB_CERT_FOLDER}:/https/"
+        networks:
+            - hub-network
+            - hub-db-network
