@@ -29,5 +29,5 @@ then
     docker-compose -f docker-compose.yml -f "docker-compose-coinbase-pro.yml" up -d
 else 
     # Deploy single domain
-    docker-compose -f docker-compose.yml -f "/docker-compose-$single_domain.yml" up -d
+    docker-compose -f docker-compose.yml -f "docker-compose-$single_domain.yml" up -d
 fi
