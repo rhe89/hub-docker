@@ -12,16 +12,11 @@ services:
         image: "rhe89/hub-spreadsheet-service-bus-queue-host:latest"
         environment:
             - ASPNETCORE_ENVIRONMENT=${ASPNETCORE_ENVIRONMENT}
-            - SQL_DB_SPREADSHEET=${SQL_DB_SPREADSHEET}
-            - COINBASE_API_HOST=${COINBASE_API_HOST}
-            - COINBASE_PRO_API_HOST=${COINBASE_PRO_API_HOST}
-            - SBANKEN_API_HOST=${SBANKEN_API_HOST}
-            - SERVICE_BUS_QUEUE_SAS=${SERVICE_BUS_QUEUE_SAS}
-            - STORAGE_ACCOUNT=${STORAGE_ACCOUNT}
+            - APP_CONFIG_CONNECTION_STRING=${APP_CONFIG_CONNECTION_STRING}
+            - AZURE_TENANT_ID=${AZURE_TENANT_ID}
+            - AZURE_CLIENT_ID=${AZURE_CLIENT_ID}
+            - AZURE_CLIENT_SECRET=${AZURE_CLIENT_SECRET}
             - DOMAIN=Spreadsheet
-            - APPINSIGHTS_INSTRUMENTATIONKEY=${APPINSIGHTS_INSTRUMENTATIONKEY}
-            - COSMOS_DB_CONNECTION_STRING=${COSMOS_DB_CONNECTION_STRING}
-            - COSMOS_DB_SPREADSHEET=${COSMOS_DB_SPREADSHEET}
         restart: on-failure
         networks:
             - hub-network
@@ -36,10 +31,10 @@ services:
         environment: 
             - ASPNETCORE_ENVIRONMENT=${ASPNETCORE_ENVIRONMENT}
             - ASPNETCORE_URLS=http://+
-            - SQL_DB_SPREADSHEET=${SQL_DB_SPREADSHEET}
-            - SERVICE_BUS_QUEUE_SAS=${SERVICE_BUS_QUEUE_SAS}
-            - STORAGE_ACCOUNT=${STORAGE_ACCOUNT}
-            - AI_CONNECTION_STRING=${AI_CONNECTION_STRING}
+            - APP_CONFIG_CONNECTION_STRING=${APP_CONFIG_CONNECTION_STRING}
+            - AZURE_TENANT_ID=${AZURE_TENANT_ID}
+            - AZURE_CLIENT_ID=${AZURE_CLIENT_ID}
+            - AZURE_CLIENT_SECRET=${AZURE_CLIENT_SECRET}
             - DOMAIN=Spreadsheet
         restart: on-failure
         networks:
@@ -58,10 +53,11 @@ services:
             - ASPNETCORE_HTTPS_PORT=${SPREADSHEET_WEBAPP_PORT}
             - ASPNETCORE_Kestrel__Certificates__Default__Password=${ASPNETCORE_Kestrel__Certificates__Default__Password}
             - ASPNETCORE_Kestrel__Certificates__Default__Path=${ASPNETCORE_Kestrel__Certificates__Default__Path}
-            - AI_CONNECTION_STRING=${AI_CONNECTION_STRING}
+            - APP_CONFIG_CONNECTION_STRING=${APP_CONFIG_CONNECTION_STRING}
+            - AZURE_TENANT_ID=${AZURE_TENANT_ID}
+            - AZURE_CLIENT_ID=${AZURE_CLIENT_ID}
+            - AZURE_CLIENT_SECRET=${AZURE_CLIENT_SECRET}
             - DOMAIN=Spreadsheet
-            - COSMOS_DB_CONNECTION_STRING=${COSMOS_DB_CONNECTION_STRING}
-            - COSMOS_DB_SPREADSHEET=${COSMOS_DB_SPREADSHEET}
         restart: on-failure
         volumes: 
             - "${WEB_CERT_FOLDER}:/https/"

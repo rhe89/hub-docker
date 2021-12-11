@@ -12,12 +12,10 @@ services:
         image: "rhe89/hub-coinbase-pro-service-bus-queue-host:latest"
         environment:
             - ASPNETCORE_ENVIRONMENT=${ASPNETCORE_ENVIRONMENT}
-            - SQL_DB_COINBASE_PRO=${SQL_DB_COINBASE_PRO}
-            - COINBASE_API_HOST=${COINBASE_API_HOST}
-            - SERVICE_BUS_QUEUE_SAS=${SERVICE_BUS_QUEUE_SAS}
-            - STORAGE_ACCOUNT=${STORAGE_ACCOUNT}
-            - COMMAND_LOG_TABLE_NAME=${COMMAND_LOG_TABLE_NAME}
-            - ERROR_LOG_TABLE_NAME=${ERROR_LOG_TABLE_NAME}
+            - APP_CONFIG_CONNECTION_STRING=${APP_CONFIG_CONNECTION_STRING}
+            - AZURE_TENANT_ID=${AZURE_TENANT_ID}
+            - AZURE_CLIENT_ID=${AZURE_CLIENT_ID}
+            - AZURE_CLIENT_SECRET=${AZURE_CLIENT_SECRET}
             - DOMAIN=CoinbasePro
         restart: on-failure
         networks:
@@ -29,11 +27,10 @@ services:
         image: "rhe89/hub-coinbase-pro-scheduled-host:latest"
         environment:
             - ASPNETCORE_ENVIRONMENT=${ASPNETCORE_ENVIRONMENT}
-            - SQL_DB_COINBASE_PRO=${SQL_DB_COINBASE_PRO}
-            - SERVICE_BUS_QUEUE_SAS=${SERVICE_BUS_QUEUE_SAS}
-            - STORAGE_ACCOUNT=${STORAGE_ACCOUNT}
-            - COMMAND_LOG_TABLE_NAME=${COMMAND_LOG_TABLE_NAME}
-            - ERROR_LOG_TABLE_NAME=${ERROR_LOG_TABLE_NAME}
+            - APP_CONFIG_CONNECTION_STRING=${APP_CONFIG_CONNECTION_STRING}
+            - AZURE_TENANT_ID=${AZURE_TENANT_ID}
+            - AZURE_CLIENT_ID=${AZURE_CLIENT_ID}
+            - AZURE_CLIENT_SECRET=${AZURE_CLIENT_SECRET}
             - DOMAIN=CoinbasePro
         restart: on-failure
         networks:
@@ -49,12 +46,10 @@ services:
         environment: 
             - ASPNETCORE_ENVIRONMENT=${ASPNETCORE_ENVIRONMENT}
             - ASPNETCORE_URLS=;http://+
-            - SQL_DB_COINBASE_PRO=${SQL_DB_COINBASE_PRO}
-            - COINBASE_API_HOST=${COINBASE_API_HOST}
-            - SERVICE_BUS_QUEUE_SAS=${SERVICE_BUS_QUEUE_SAS}
-            - AI_CONNECTION_STRING=${AI_CONNECTION_STRING}
-            - STORAGE_ACCOUNT=${STORAGE_ACCOUNT}
-            - ERROR_LOG_TABLE_NAME=${ERROR_LOG_TABLE_NAME}
+            - APP_CONFIG_CONNECTION_STRING=${APP_CONFIG_CONNECTION_STRING}
+            - AZURE_TENANT_ID=${AZURE_TENANT_ID}
+            - AZURE_CLIENT_ID=${AZURE_CLIENT_ID}
+            - AZURE_CLIENT_SECRET=${AZURE_CLIENT_SECRET}
             - DOMAIN=CoinbasePro
         restart: on-failure
         networks:

@@ -15,17 +15,14 @@ docker pull rhe89/hub-sbanken-api:latest
 docker pull rhe89/hub-sbanken-app:latest
 docker pull rhe89/hub-spreadsheet-service-bus-queue-host:latest
 docker pull rhe89/hub-spreadsheet-api:latest
-docker pull rhe89/hub-admin-web:latest
-docker pull rhe89/hub-dashboard-web:latest
+docker pull rhe89/hub-spreadsheet-webapp:latest
 
 # If no domain is specified, deploy all
 if [ -z "$single_domain" ];
 then
-    docker-compose -f docker-compose.yml -f "docker-compose-admin.yml" up -d
     docker-compose -f docker-compose.yml -f "docker-compose-sbanken.yml" up -d
     docker-compose -f docker-compose.yml -f "docker-compose-coinbase.yml" up -d
-    docker-compose -f docker-compose.yml -f "docker-compose-dashboard.yml" up -d
-    docker-compose -f docker-compose.yml -f "spreadsheet/docker-compose.yml" up -d
+    docker-compose -f docker-compose.yml -f "docker-compose-spreadsheet.yml" up -d
     docker-compose -f docker-compose.yml -f "docker-compose-coinbase-pro.yml" up -d
 else 
     # Deploy single domain

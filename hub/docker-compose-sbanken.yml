@@ -12,11 +12,11 @@ services:
         image: "rhe89/hub-sbanken-service-bus-queue-host:latest"
         environment:
             - ASPNETCORE_ENVIRONMENT=${ASPNETCORE_ENVIRONMENT}
-            - SQL_DB_SBANKEN=${SQL_DB_SBANKEN}
-            - SERVICE_BUS_QUEUE_SAS=${SERVICE_BUS_QUEUE_SAS}
-            - STORAGE_ACCOUNT=${STORAGE_ACCOUNT}
+            - APP_CONFIG_CONNECTION_STRING=${APP_CONFIG_CONNECTION_STRING}
+            - AZURE_TENANT_ID=${AZURE_TENANT_ID}
+            - AZURE_CLIENT_ID=${AZURE_CLIENT_ID}
+            - AZURE_CLIENT_SECRET=${AZURE_CLIENT_SECRET}
             - DOMAIN=Sbanken
-            - APPINSIGHTS_INSTRUMENTATIONKEY=${APPINSIGHTS_INSTRUMENTATIONKEY}
         restart: on-failure
         networks:
             - hub-network
@@ -27,11 +27,11 @@ services:
         image: "rhe89/hub-sbanken-scheduled-host:latest"
         environment:
             - ASPNETCORE_ENVIRONMENT=${ASPNETCORE_ENVIRONMENT}
-            - SQL_DB_SBANKEN=${SQL_DB_SBANKEN}
-            - SERVICE_BUS_QUEUE_SAS=${SERVICE_BUS_QUEUE_SAS}
-            - STORAGE_ACCOUNT=${STORAGE_ACCOUNT}
+            - APP_CONFIG_CONNECTION_STRING=${APP_CONFIG_CONNECTION_STRING}
+            - AZURE_TENANT_ID=${AZURE_TENANT_ID}
+            - AZURE_CLIENT_ID=${AZURE_CLIENT_ID}
+            - AZURE_CLIENT_SECRET=${AZURE_CLIENT_SECRET}
             - DOMAIN=Sbanken
-            - APPINSIGHTS_INSTRUMENTATIONKEY=${APPINSIGHTS_INSTRUMENTATIONKEY}
         restart: on-failure
         networks:
             - hub-network
@@ -46,10 +46,10 @@ services:
         environment: 
             - ASPNETCORE_ENVIRONMENT=${ASPNETCORE_ENVIRONMENT}
             - ASPNETCORE_URLS=;http://+
-            - SQL_DB_SBANKEN=${SQL_DB_SBANKEN}
-            - SERVICE_BUS_QUEUE_SAS=${SERVICE_BUS_QUEUE_SAS}
-            - AI_CONNECTION_STRING=${AI_CONNECTION_STRING}
-            - STORAGE_ACCOUNT=${STORAGE_ACCOUNT}
+            - APP_CONFIG_CONNECTION_STRING=${APP_CONFIG_CONNECTION_STRING}
+            - AZURE_TENANT_ID=${AZURE_TENANT_ID}
+            - AZURE_CLIENT_ID=${AZURE_CLIENT_ID}
+            - AZURE_CLIENT_SECRET=${AZURE_CLIENT_SECRET}
             - DOMAIN=Sbanken
         restart: on-failure
         networks:
@@ -68,9 +68,10 @@ services:
             - ASPNETCORE_HTTPS_PORT=${SBANKEN_APP_PORT}
             - ASPNETCORE_Kestrel__Certificates__Default__Password=${ASPNETCORE_Kestrel__Certificates__Default__Password}
             - ASPNETCORE_Kestrel__Certificates__Default__Path=${ASPNETCORE_Kestrel__Certificates__Default__Path}
-            - SQL_DB_SBANKEN=${SQL_DB_SBANKEN}
-            - AI_CONNECTION_STRING=${AI_CONNECTION_STRING}
-            - STORAGE_ACCOUNT=${STORAGE_ACCOUNT}
+            - APP_CONFIG_CONNECTION_STRING=${APP_CONFIG_CONNECTION_STRING}
+            - AZURE_TENANT_ID=${AZURE_TENANT_ID}
+            - AZURE_CLIENT_ID=${AZURE_CLIENT_ID}
+            - AZURE_CLIENT_SECRET=${AZURE_CLIENT_SECRET}
             - DOMAIN=Sbanken
         restart: on-failure
         volumes: 
