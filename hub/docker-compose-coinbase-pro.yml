@@ -17,6 +17,7 @@ services:
             - AZURE_CLIENT_ID=${AZURE_CLIENT_ID}
             - AZURE_CLIENT_SECRET=${AZURE_CLIENT_SECRET}
             - DOMAIN=CoinbasePro
+            - CLOUD_ROLE_NAME=coinbase-pro-service-bus-queue-host
         restart: on-failure
         networks:
             - hub-network
@@ -32,6 +33,7 @@ services:
             - AZURE_CLIENT_ID=${AZURE_CLIENT_ID}
             - AZURE_CLIENT_SECRET=${AZURE_CLIENT_SECRET}
             - DOMAIN=CoinbasePro
+            - CLOUD_ROLE_NAME=coinbase-pro-scheduled-host
         restart: on-failure
         networks:
             - hub-network
@@ -51,6 +53,7 @@ services:
             - AZURE_CLIENT_ID=${AZURE_CLIENT_ID}
             - AZURE_CLIENT_SECRET=${AZURE_CLIENT_SECRET}
             - DOMAIN=CoinbasePro
+            - CLOUD_ROLE_NAME=coinbase-pro-api
         restart: on-failure
         networks:
             - hub-network

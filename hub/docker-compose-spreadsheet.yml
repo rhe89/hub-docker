@@ -17,6 +17,7 @@ services:
             - AZURE_CLIENT_ID=${AZURE_CLIENT_ID}
             - AZURE_CLIENT_SECRET=${AZURE_CLIENT_SECRET}
             - DOMAIN=Spreadsheet
+            - CLOUD_ROLE_NAME=spreadsheet-service-bus-queue-host
         restart: on-failure
         networks:
             - hub-network
@@ -36,6 +37,7 @@ services:
             - AZURE_CLIENT_ID=${AZURE_CLIENT_ID}
             - AZURE_CLIENT_SECRET=${AZURE_CLIENT_SECRET}
             - DOMAIN=Spreadsheet
+            - CLOUD_ROLE_NAME=spreadsheet-api
         restart: on-failure
         networks:
             - hub-network
@@ -58,6 +60,7 @@ services:
             - AZURE_CLIENT_ID=${AZURE_CLIENT_ID}
             - AZURE_CLIENT_SECRET=${AZURE_CLIENT_SECRET}
             - DOMAIN=Spreadsheet
+            - CLOUD_ROLE_NAME=spreadsheet-web
         restart: on-failure
         volumes: 
             - "${WEB_CERT_FOLDER}:/https/"

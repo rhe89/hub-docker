@@ -17,6 +17,7 @@ services:
             - AZURE_CLIENT_ID=${AZURE_CLIENT_ID}
             - AZURE_CLIENT_SECRET=${AZURE_CLIENT_SECRET}
             - DOMAIN=Sbanken
+            - CLOUD_ROLE_NAME=sbanken-service-bus-queue-host
         restart: on-failure
         networks:
             - hub-network
@@ -32,6 +33,7 @@ services:
             - AZURE_CLIENT_ID=${AZURE_CLIENT_ID}
             - AZURE_CLIENT_SECRET=${AZURE_CLIENT_SECRET}
             - DOMAIN=Sbanken
+            - CLOUD_ROLE_NAME=sbanken-scheduled-host
         restart: on-failure
         networks:
             - hub-network
@@ -51,6 +53,7 @@ services:
             - AZURE_CLIENT_ID=${AZURE_CLIENT_ID}
             - AZURE_CLIENT_SECRET=${AZURE_CLIENT_SECRET}
             - DOMAIN=Sbanken
+            - CLOUD_ROLE_NAME=sbanken-api
         restart: on-failure
         networks:
             - hub-network
@@ -73,6 +76,7 @@ services:
             - AZURE_CLIENT_ID=${AZURE_CLIENT_ID}
             - AZURE_CLIENT_SECRET=${AZURE_CLIENT_SECRET}
             - DOMAIN=Sbanken
+            - CLOUD_ROLE_NAME=sbanken-web
         restart: on-failure
         volumes: 
             - "${WEB_CERT_FOLDER}:/https/"
