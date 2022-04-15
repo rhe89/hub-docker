@@ -7,44 +7,44 @@ networks:
             name: hub-db-network
 
 services:
-    coinbase-service-bus-queue-host:
-        container_name: "coinbase_service_bus_queue_host"
-        image: "rhe89/hub-coinbase-service-bus-queue-host:latest"
+   crypto-service-bus-queue-host:
+        container_name: "crypto_service_bus_queue_host"
+        image: "rhe89/hub-crypto-service-bus-queue-host:latest"
         environment:
             - ASPNETCORE_ENVIRONMENT=${ASPNETCORE_ENVIRONMENT}
             - APP_CONFIG_CONNECTION_STRING=${APP_CONFIG_CONNECTION_STRING}
             - AZURE_TENANT_ID=${AZURE_TENANT_ID}
             - AZURE_CLIENT_ID=${AZURE_CLIENT_ID}
             - AZURE_CLIENT_SECRET=${AZURE_CLIENT_SECRET}
-            - DOMAIN=Coinbase
-            - CLOUD_ROLE_NAME=coinbase-service-bus-queue-host
+            - DOMAIN=Crypto
+            - CLOUD_ROLE_NAME=crypto-service-bus-queue-host
         restart: on-failure
         networks:
             - hub-network
             - hub-db-network
 
-    coinbase-scheduled-host:
-        container_name: "coinbase_scheduled_host"
-        image: "rhe89/hub-coinbase-scheduled-host:latest"
+   crypto-scheduled-host:
+        container_name: "crypto_scheduled_host"
+        image: "rhe89/hub-crypto-scheduled-host:latest"
         environment:
             - ASPNETCORE_ENVIRONMENT=${ASPNETCORE_ENVIRONMENT}
             - APP_CONFIG_CONNECTION_STRING=${APP_CONFIG_CONNECTION_STRING}
             - AZURE_TENANT_ID=${AZURE_TENANT_ID}
             - AZURE_CLIENT_ID=${AZURE_CLIENT_ID}
             - AZURE_CLIENT_SECRET=${AZURE_CLIENT_SECRET}
-            - DOMAIN=Coinbase
-            - CLOUD_ROLE_NAME=coinbase-scheduled-host
+            - DOMAIN=Crypto
+            - CLOUD_ROLE_NAME=crypto-scheduled-host
         restart: on-failure
         networks:
             - hub-network
             - hub-db-network
 
-    coinbase-api:
-        container_name: "coinbase_api"
-        image: "rhe89/hub-coinbase-api:latest"
-        hostname: "coinbase-api"
+   crypto-api:
+        container_name: "crypto_api"
+        image: "rhe89/hub-crypto-api:latest"
+        hostname: "crypto-api"
         ports:
-            - "${COINBASE_API_PORT}:80"
+            - "${COINBASE_PRO_API_PORT}:80"
         environment: 
             - ASPNETCORE_ENVIRONMENT=${ASPNETCORE_ENVIRONMENT}
             - ASPNETCORE_URLS=;http://+
@@ -52,8 +52,8 @@ services:
             - AZURE_TENANT_ID=${AZURE_TENANT_ID}
             - AZURE_CLIENT_ID=${AZURE_CLIENT_ID}
             - AZURE_CLIENT_SECRET=${AZURE_CLIENT_SECRET}
-            - DOMAIN=Coinbase
-            - CLOUD_ROLE_NAME=coinbase-ppi
+            - DOMAIN=Crypto
+            - CLOUD_ROLE_NAME=crypto-api
         restart: on-failure
         networks:
             - hub-network
