@@ -44,7 +44,7 @@ services:
         image: "rhe89/hub-crypto-api:latest"
         hostname: "crypto-api"
         ports:
-            - "${COINBASE_PRO_API_PORT}:80"
+            - "${CRYPTO_API_PORT}:80"
         environment: 
             - ASPNETCORE_ENVIRONMENT=${ASPNETCORE_ENVIRONMENT}
             - ASPNETCORE_URLS=;http://+
