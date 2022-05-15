@@ -1,6 +1,6 @@
 sqlDbPassword=$1
 
-sh ../backups/backup_db.sh $sqlDbPassword
+sh backup_db.sh $sqlDbPassword
 
 single_domain=$2
 
