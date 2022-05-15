@@ -18,7 +18,7 @@ services:
             - AZURE_CLIENT_SECRET=${AZURE_CLIENT_SECRET}
             - DOMAIN=Banking
             - CLOUD_ROLE_NAME=banking-service-bus-queue-host
-        restart: "no"
+        restart: on-failure:5
         networks:
             - hub-network
             - hub-db-network
@@ -34,7 +34,7 @@ services:
             - AZURE_CLIENT_SECRET=${AZURE_CLIENT_SECRET}
             - DOMAIN=Banking
             - CLOUD_ROLE_NAME=banking-scheduled-host
-        restart: "no"
+        restart: on-failure:5
         networks:
             - hub-network
             - hub-db-network
@@ -54,7 +54,7 @@ services:
             - AZURE_CLIENT_SECRET=${AZURE_CLIENT_SECRET}
             - DOMAIN=Banking
             - CLOUD_ROLE_NAME=banking-api
-        restart: "no"
+        restart: on-failure:5
         networks:
             - hub-network
             - hub-db-network
@@ -77,7 +77,7 @@ services:
             - AZURE_CLIENT_SECRET=${AZURE_CLIENT_SECRET}
             - DOMAIN=Banking
             - CLOUD_ROLE_NAME=banking-web
-        restart: "no"
+        restart: on-failure:5
         volumes: 
             - "${WEB_CERT_FOLDER}:/https/"
         networks:
