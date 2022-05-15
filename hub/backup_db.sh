@@ -1,7 +1,7 @@
 password=$1;
 
 backup_dir=$(date +'%d-%m-%Y_%H-%M-%S')
-mkdir "$backup_dir"
+mkdir "./backups/$backup_dir"
 
 databases=("coinbase_db" "binance_db" "coinbase_pro_db" "sbanken_db" "spreadsheet_db" "dashboard_db")
 
