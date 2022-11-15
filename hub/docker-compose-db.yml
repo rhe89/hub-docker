@@ -8,7 +8,7 @@ services:
         container_name: "hub_db"
         hostname: "hub-db"
         image: mcr.microsoft.com/mssql/server
-        restart: always
+        restart: on-failure:5
         volumes:
             - hub-db-volume:/var/opt/mssql
         ports: 

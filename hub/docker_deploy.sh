@@ -1,4 +1,8 @@
-single_domain=$1
+sqlDbPassword=$1
+
+sh backup_db.sh $sqlDbPassword
+
+single_domain=$2
 
 # Create database
 docker-compose -f docker-compose-db.yml up -d
