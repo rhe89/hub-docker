@@ -12,5 +12,5 @@ for database in ${databases[@]}; do
     -S localhost -U SA -P $password \
     -Q "BACKUP DATABASE [$database] TO DISK = N'/var/opt/mssql/backup/"$backup_dir"/$database.bak' WITH NOFORMAT, NOINIT, NAME = '$database-full', SKIP, NOREWIND, NOUNLOAD, STATS = 10"
 
-    sudo docker cp hub_db:/var/opt/mssql/backup/"$backup_dir"/$database.bak "$backup_dir"/$database.bak
+    sudo docker cp hub_db:/var/opt/mssql/backup/"$backup_dir"/$database.bak "./backups/$backup_dir"/$database.bak
 done
