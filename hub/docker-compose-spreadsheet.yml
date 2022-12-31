@@ -7,22 +7,6 @@ networks:
             name: hub-db-network
 
 services:
-    spreadsheet-service-bus-queue-host:
-        container_name: "spreadsheet_service_bus_queue_host"
-        image: "rhe89/hub-spreadsheet-service-bus-queue-host:latest"
-        environment:
-            - ASPNETCORE_ENVIRONMENT=${ASPNETCORE_ENVIRONMENT}
-            - APP_CONFIG_CONNECTION_STRING=${APP_CONFIG_CONNECTION_STRING}
-            - AZURE_TENANT_ID=${AZURE_TENANT_ID}
-            - AZURE_CLIENT_ID=${AZURE_CLIENT_ID}
-            - AZURE_CLIENT_SECRET=${AZURE_CLIENT_SECRET}
-            - DOMAIN=Spreadsheet
-            - CLOUD_ROLE_NAME=spreadsheet-service-bus-queue-host
-        restart: on-failure:5
-        networks:
-            - hub-network
-            - hub-db-network
-            
     spreadsheet-api:
         container_name: "spreadsheet_api"
         image: "rhe89/hub-spreadsheet-api:latest"

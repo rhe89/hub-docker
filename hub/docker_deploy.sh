@@ -14,9 +14,7 @@ docker pull rhe89/hub-banking-service-bus-queue-host:latest
 docker pull rhe89/hub-banking-scheduled-host:latest
 docker pull rhe89/hub-banking-api:latest
 docker pull rhe89/hub-banking-app:latest
-docker pull rhe89/hub-spreadsheet-service-bus-queue-host:latest
 docker pull rhe89/hub-spreadsheet-api:latest
-docker pull rhe89/hub-spreadsheet-webapp:latest
 
 # If no domain is specified, deploy all
 if [ -z "$single_domain" ];
